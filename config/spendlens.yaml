@@ -1,0 +1,40 @@
+project:
+  name: SpendLens
+  seed: 202603
+  currency: INR
+  kpi_type: non_revenue
+  holdout_weeks: 13
+  start_date: '2024-01-01'
+  weeks: 104
+  geos: 12
+paths:
+  raw: data/raw/weekly_territory.csv
+  experiments: data/reference/experiment_lift.csv
+  truth: data/ground_truth/simulation_truth.csv
+  gold_parquet: data/gold/spendlens_gold.parquet
+  duckdb: data/gold/spendlens.duckdb
+  exports: data/exports
+  model: models/spendlens.binpb
+channels:
+  - rep_visits
+  - speaker_programs
+  - hcp_email
+  - programmatic_display
+  - paid_search
+  - paid_social
+  - medical_journals
+  - patient_digital
+controls:
+  - competitor_index
+  - access_index
+  - launch_pulse
+  - flu_index
+constraints:
+  min_spend_change: -0.20
+  max_spend_change: 0.20
+  confidence_level: 0.90
+validation:
+  finance_tolerance_pct: 0.005
+  max_missing_pct: 0.0
+  max_pairwise_channel_corr: 0.95
+  min_nonzero_weeks_per_channel: 26
