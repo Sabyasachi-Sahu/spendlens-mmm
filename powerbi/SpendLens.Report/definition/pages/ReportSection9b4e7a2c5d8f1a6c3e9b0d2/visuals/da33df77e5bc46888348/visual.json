@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "da33df77e5bc46888348",
   "position": {
     "x": 24,
@@ -51,32 +51,28 @@
                 "Where": [
                   {
                     "Condition": {
-                      "Not": {
-                        "Expression": {
-                          "In": {
-                            "Expressions": [
-                              {
-                                "Column": {
-                                  "Expression": {
-                                    "SourceRef": {
-                                      "Source": "d"
-                                    }
-                                  },
-                                  "Property": "channel"
+                      "In": {
+                        "Expressions": [
+                          {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "d"
                                 }
-                              }
-                            ],
-                            "Values": [
-                              [
-                                {
-                                  "Literal": {
-                                    "Value": "null"
-                                  }
-                                }
-                              ]
-                            ]
+                              },
+                              "Property": "channel"
+                            }
                           }
-                        }
+                        ],
+                        "Values": [
+                          [
+                            {
+                              "Literal": {
+                                "Value": "'paid_search'"
+                              }
+                            }
+                          ]
+                        ]
                       }
                     }
                   }
@@ -84,6 +80,11 @@
               }
             }
           }
+        }
+      ],
+      "data": [
+        {
+          "properties": {}
         }
       ]
     },
@@ -260,8 +261,7 @@
               }
             }
           ]
-        },
-        "howCreated": "User"
+        }
       }
     ]
   }

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "42b80a637c1e4d33b73b",
   "position": {
     "x": 24,
@@ -46,7 +46,8 @@
                 }
               },
               "queryRef": "channel_summary.Paid Spend",
-              "nativeQueryRef": "Paid Spend"
+              "nativeQueryRef": "Paid Spend",
+              "active": true
             }
           ]
         },

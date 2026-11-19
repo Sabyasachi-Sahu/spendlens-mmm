@@ -1,7 +1,14 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "597786766622481aad55",
-  "position": {"x": 24, "y": 448, "z": 4000, "height": 608, "width": 1872, "tabOrder": 4000},
+  "position": {
+    "x": 24,
+    "y": 448,
+    "z": 4000,
+    "height": 608,
+    "width": 1872,
+    "tabOrder": 4000
+  },
   "visual": {
     "visualType": "tableEx",
     "query": {
@@ -9,48 +16,230 @@
         "Values": {
           "projections": [
             {
-              "field": {"Column": {"Expression": {"SourceRef": {"Entity": "dim_channel"}}, "Property": "channel"}},
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_channel"
+                    }
+                  },
+                  "Property": "channel"
+                }
+              },
               "queryRef": "dim_channel.channel",
               "nativeQueryRef": "channel"
             },
             {
-              "field": {"Measure": {"Expression": {"SourceRef": {"Entity": "channel_summary"}}, "Property": "Paid Spend"}},
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "channel_summary"
+                    }
+                  },
+                  "Property": "Paid Spend"
+                }
+              },
               "queryRef": "channel_summary.Paid Spend",
               "nativeQueryRef": "Paid Spend",
               "format": "#,0"
             },
             {
-              "field": {"Measure": {"Expression": {"SourceRef": {"Entity": "channel_summary"}}, "Property": "mROI"}},
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "channel_summary"
+                    }
+                  },
+                  "Property": "mROI"
+                }
+              },
               "queryRef": "channel_summary.mROI",
               "nativeQueryRef": "mROI",
               "format": "#,0"
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "channel_summary"
+                  }
+                },
+                "Property": "mROI"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
       }
     },
     "objects": {
-      "columnHeaders": [{"properties": {
-        "columnAdjustment": {"expr": {"Literal": {"Value": "'growToFit'"}}},
-        "autoSizeColumnWidth": {"expr": {"Literal": {"Value": "true"}}}
-      }}]
+      "columnHeaders": [
+        {
+          "properties": {
+            "columnAdjustment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'growToFit'"
+                }
+              }
+            },
+            "autoSizeColumnWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnFormatting": [
+        {
+          "properties": {
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "2L"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "channel_summary.mROI"
+          }
+        }
+      ]
     },
     "visualContainerObjects": {
-      "title": [{"properties": {
-        "show": {"expr": {"Literal": {"Value": "true"}}},
-        "text": {"expr": {"Literal": {"Value": "'Current spend and marginal ROI'"}}},
-        "fontSize": {"expr": {"Literal": {"Value": "14D"}}}
-      }}],
-      "stylePreset": [{"properties": {
-        "name": {"expr": {"Literal": {"Value": "'AlternatingRows'"}}}
-      }}],
-      "padding": [{"properties": {
-        "top": {"expr": {"Literal": {"Value": "8D"}}},
-        "bottom": {"expr": {"Literal": {"Value": "8D"}}},
-        "left": {"expr": {"Literal": {"Value": "8D"}}},
-        "right": {"expr": {"Literal": {"Value": "8D"}}}
-      }}]
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Current spend and marginal ROI'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "stylePreset": [
+        {
+          "properties": {
+            "name": {
+              "expr": {
+                "Literal": {
+                  "Value": "'AlternatingRows'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "60527ff4a1e10b25d2d2",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_channel"
+              }
+            },
+            "Property": "channel"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "32ab823746b454b778c5",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "channel_summary"
+              }
+            },
+            "Property": "Paid Spend"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "fa91341ea897d87cb5aa",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "channel_summary"
+              }
+            },
+            "Property": "mROI"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

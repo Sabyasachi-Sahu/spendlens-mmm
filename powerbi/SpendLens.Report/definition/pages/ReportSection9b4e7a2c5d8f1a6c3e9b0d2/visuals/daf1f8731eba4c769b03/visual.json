@@ -1,35 +1,80 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "daf1f8731eba4c769b03",
-  "position": {"x": 1102, "y": 24, "z": 3000, "height": 400, "width": 794, "tabOrder": 3000},
+  "position": {
+    "x": 1102,
+    "y": 24,
+    "z": 3000,
+    "height": 400,
+    "width": 794,
+    "tabOrder": 3000
+  },
   "visual": {
     "visualType": "lineChart",
     "query": {
       "queryState": {
         "Category": {
-          "projections": [{
-            "field": {"Column": {"Expression": {"SourceRef": {"Entity": "response_curves"}}, "Property": "spend"}},
-            "queryRef": "response_curves.spend",
-            "nativeQueryRef": "spend",
-            "active": true
-          }]
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "response_curves"
+                    }
+                  },
+                  "Property": "spend"
+                }
+              },
+              "queryRef": "response_curves.spend",
+              "nativeQueryRef": "spend",
+              "active": true
+            }
+          ]
         },
         "Y": {
           "projections": [
             {
-              "field": {"Measure": {"Expression": {"SourceRef": {"Entity": "response_curves"}}, "Property": "Curve Outcome"}},
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "response_curves"
+                    }
+                  },
+                  "Property": "Curve Outcome"
+                }
+              },
               "queryRef": "response_curves.Curve Outcome",
               "nativeQueryRef": "Curve Outcome",
               "format": "#,0"
             },
             {
-              "field": {"Measure": {"Expression": {"SourceRef": {"Entity": "response_curves"}}, "Property": "Curve Outcome Lower"}},
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "response_curves"
+                    }
+                  },
+                  "Property": "Curve Outcome Lower"
+                }
+              },
               "queryRef": "response_curves.Curve Outcome Lower",
               "nativeQueryRef": "Curve Outcome Lower",
               "format": "#,0"
             },
             {
-              "field": {"Measure": {"Expression": {"SourceRef": {"Entity": "response_curves"}}, "Property": "Curve Outcome Upper"}},
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "response_curves"
+                    }
+                  },
+                  "Property": "Curve Outcome Upper"
+                }
+              },
               "queryRef": "response_curves.Curve Outcome Upper",
               "nativeQueryRef": "Curve Outcome Upper",
               "format": "#,0"
@@ -39,38 +84,180 @@
       }
     },
     "objects": {
-      "categoryAxis": [{"properties": {
-        "axisType": {"expr": {"Literal": {"Value": "'Scalar'"}}},
-        "fontSize": {"expr": {"Literal": {"Value": "10D"}}},
-        "labelDisplayUnits": {"expr": {"Literal": {"Value": "0D"}}}
-      }}],
-      "valueAxis": [{"properties": {
-        "labelDisplayUnits": {"expr": {"Literal": {"Value": "0D"}}},
-        "labelPrecision": {"expr": {"Literal": {"Value": "0L"}}}
-      }}],
-      "legend": [{"properties": {"show": {"expr": {"Literal": {"Value": "false"}}}}}]
+      "categoryAxis": [
+        {
+          "properties": {
+            "axisType": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Scalar'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "0L"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "legend": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "visualContainerObjects": {
-      "title": [{"properties": {
-        "show": {"expr": {"Literal": {"Value": "true"}}},
-        "text": {"expr": {"Literal": {"Value": "'Response curve with 90% range'"}}},
-        "fontSize": {"expr": {"Literal": {"Value": "14D"}}}
-      }}],
-      "background": [{"properties": {
-        "show": {"expr": {"Literal": {"Value": "true"}}},
-        "color": {"solid": {"color": {"expr": {"Literal": {"Value": "'#FFFFFF'"}}}}},
-        "transparency": {"expr": {"Literal": {"Value": "0D"}}}
-      }}],
-      "border": [{"properties": {
-        "show": {"expr": {"Literal": {"Value": "true"}}},
-        "radius": {"expr": {"Literal": {"Value": "8D"}}}
-      }}],
-      "padding": [{"properties": {
-        "top": {"expr": {"Literal": {"Value": "8D"}}},
-        "bottom": {"expr": {"Literal": {"Value": "8D"}}},
-        "left": {"expr": {"Literal": {"Value": "8D"}}},
-        "right": {"expr": {"Literal": {"Value": "8D"}}}
-      }}]
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Response curve with 90% range'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "drillFilterOtherVisuals": true
   }
