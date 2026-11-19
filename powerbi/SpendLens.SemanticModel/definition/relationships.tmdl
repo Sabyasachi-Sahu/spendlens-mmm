@@ -1,0 +1,16 @@
+relationship b92c1151-adac-3808-3b1d-6de42f6ec4ba
+	fromColumn: budget_allocation.channel
+	toColumn: dim_channel.channel
+
+relationship a733d819-cbec-d7dd-d70f-148df58232a1
+	fromColumn: channel_summary.channel
+	toColumn: dim_channel.channel
+
+relationship 78f74179-445f-8abc-f657-7b45446fd1b8
+	fromColumn: calibration_comparison.channel
+	toColumn: dim_channel.channel
+
+relationship e8679b95-30eb-92cf-1244-9661dc8b06ec
+	fromColumn: response_curves.channel
+	toColumn: dim_channel.channel
+

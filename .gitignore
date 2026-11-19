@@ -21,3 +21,4 @@ data/exports/*
 *.bak
 reports/run_logs/
 reports/tuning/*/
+powerbi/**/.pbi/

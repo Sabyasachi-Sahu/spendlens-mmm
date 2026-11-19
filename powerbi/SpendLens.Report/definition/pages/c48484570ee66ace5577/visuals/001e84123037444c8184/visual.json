@@ -1,0 +1,170 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "001e84123037444c8184",
+  "position": {
+    "x": 10.212765957446809,
+    "y": 320.97264437689967,
+    "z": 2002,
+    "height": 320.97264437689967,
+    "width": 688.63221884498478,
+    "tabOrder": 2002
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_channel"
+                    }
+                  },
+                  "Property": "channel"
+                }
+              },
+              "queryRef": "dim_channel.channel",
+              "nativeQueryRef": "channel"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "budget_allocation"
+                    }
+                  },
+                  "Property": "Baseline Budget"
+                }
+              },
+              "queryRef": "budget_allocation.Baseline Budget",
+              "nativeQueryRef": "Baseline Budget"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "budget_allocation"
+                    }
+                  },
+                  "Property": "Optimized Budget"
+                }
+              },
+              "queryRef": "budget_allocation.Optimized Budget",
+              "nativeQueryRef": "Optimized Budget"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "budget_allocation"
+                    }
+                  },
+                  "Property": "Outcome Lift %"
+                }
+              },
+              "queryRef": "budget_allocation.Outcome Lift %",
+              "nativeQueryRef": "Outcome Lift %"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "db00336a20ce9774c0e2",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_channel"
+              }
+            },
+            "Property": "channel"
+          }
+        },
+        "type": "Categorical",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "75198f78036c60633808",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "budget_allocation"
+              }
+            },
+            "Property": "Baseline Budget"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "4122a81293d5218bd568",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "budget_allocation"
+              }
+            },
+            "Property": "Optimized Budget"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "4af85aa05db905091ab0",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "budget_allocation"
+              }
+            },
+            "Property": "Outcome Lift %"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

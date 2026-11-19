@@ -1,0 +1,318 @@
+table channel_summary
+	lineageTag: 035332e8-0dc7-4542-bfaa-8bc13302a412
+
+	measure 'Paid Spend' =
+			
+			CALCULATE ( SUM ( channel_summary[spend_mean] ), channel_summary[channel] <> "All Channels" )
+		formatString: 0
+		lineageTag: b611a39f-4fd7-4902-9eba-fddc0cf73e59
+
+	measure 'Incremental Outcome' =
+			
+			CALCULATE ( SUM ( channel_summary[incremental_outcome_mean] ), channel_summary[channel] <> "All Channels" )
+		formatString: 0
+		lineageTag: f8583a55-4e38-4ef3-8e10-b28181d57cf2
+
+	measure ROI = DIVIDE ( [Incremental Outcome], [Paid Spend] )
+		lineageTag: 48b23f8a-30a2-48d5-a070-4e26c60a149b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure mROI =
+			
+			IF (
+			    HASONEVALUE ( dim_channel[channel] ),
+			    CALCULATE ( SUM ( channel_summary[mroi_mean] ), channel_summary[channel] <> "All Channels" ),
+			    BLANK ()
+			)
+		lineageTag: 88135d99-fc7f-453e-b651-0eef4ab24d56
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total ROI (all channels)' =
+			
+			CALCULATE (
+			    MAX ( channel_summary[roi_mean] ),
+			    channel_summary[channel] = "All Channels",
+			    REMOVEFILTERS ( dim_channel )
+			)
+		lineageTag: ccef0de5-d5be-4841-b2b1-b14d7b58c49c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Media Contribution %' =
+			
+			DIVIDE (
+			    CALCULATE (
+			        MAX ( channel_summary[pct_of_contribution_mean] ),
+			        channel_summary[channel] = "All Channels",
+			        REMOVEFILTERS ( dim_channel )
+			    ),
+			    100
+			)
+		lineageTag: dd6831da-8d37-49f1-a68c-e5be85c3f6be
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column model
+		dataType: string
+		lineageTag: b27de954-45c0-4372-9c68-1b678164ea4d
+		summarizeBy: none
+		sourceColumn: model
+
+		annotation SummarizationSetBy = Automatic
+
+	column channel
+		dataType: string
+		lineageTag: b9833fa5-f432-46de-8ee7-b68e08b56dcc
+		summarizeBy: none
+		sourceColumn: channel
+
+		annotation SummarizationSetBy = Automatic
+
+	column currency
+		dataType: string
+		lineageTag: d9f51667-a830-4c1d-92db-0be9ec771d11
+		summarizeBy: none
+		sourceColumn: currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column spend_mean
+		dataType: int64
+		formatString: 0
+		lineageTag: e467ba76-f8df-4b7f-a853-c05e98fdc02b
+		summarizeBy: sum
+		sourceColumn: spend_mean
+
+		annotation SummarizationSetBy = Automatic
+
+	column pct_of_spend_mean
+		dataType: double
+		lineageTag: aef60979-1ecf-444b-97b9-ac3971510a9e
+		summarizeBy: sum
+		sourceColumn: pct_of_spend_mean
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column impressions_mean
+		dataType: double
+		lineageTag: bfbb1ba8-117e-4c78-a3d9-d2eec29ec2e2
+		summarizeBy: sum
+		sourceColumn: impressions_mean
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column pct_of_impressions_mean
+		dataType: double
+		lineageTag: e03e789b-827d-4cc6-b5f0-679998a54151
+		summarizeBy: sum
+		sourceColumn: pct_of_impressions_mean
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cpm_mean
+		dataType: double
+		lineageTag: a395d4fc-3944-4f6b-b615-be523be81e61
+		summarizeBy: sum
+		sourceColumn: cpm_mean
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column incremental_outcome_mean
+		dataType: int64
+		formatString: 0
+		lineageTag: eee934b9-1a3d-426c-9b0b-cd51ee842563
+		summarizeBy: sum
+		sourceColumn: incremental_outcome_mean
+
+		annotation SummarizationSetBy = Automatic
+
+	column incremental_outcome_lo90
+		dataType: int64
+		formatString: 0
+		lineageTag: 51d5482e-f9b8-46a5-b47e-38dbdde543a1
+		summarizeBy: sum
+		sourceColumn: incremental_outcome_lo90
+
+		annotation SummarizationSetBy = Automatic
+
+	column incremental_outcome_hi90
+		dataType: int64
+		formatString: 0
+		lineageTag: 666d8b00-6507-4390-8603-6c37eed259c8
+		summarizeBy: sum
+		sourceColumn: incremental_outcome_hi90
+
+		annotation SummarizationSetBy = Automatic
+
+	column pct_of_contribution_mean
+		dataType: double
+		lineageTag: a2e36ae4-f8ed-4fb7-83f5-7afea74e0ad2
+		summarizeBy: sum
+		sourceColumn: pct_of_contribution_mean
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column pct_of_contribution_lo90
+		dataType: double
+		lineageTag: 916e33ba-936d-4242-ae73-2350193b9258
+		summarizeBy: sum
+		sourceColumn: pct_of_contribution_lo90
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column pct_of_contribution_hi90
+		dataType: double
+		lineageTag: 22a7049d-2a62-4ad3-887d-bbe6fe21b0bd
+		summarizeBy: sum
+		sourceColumn: pct_of_contribution_hi90
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column roi_mean
+		dataType: double
+		lineageTag: 9c5a1e7e-9427-426a-a17a-5a9dc705356e
+		summarizeBy: sum
+		sourceColumn: roi_mean
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column roi_lo90
+		dataType: double
+		lineageTag: 8df1373e-b7de-4a8c-8f4d-404c5c9ed679
+		summarizeBy: sum
+		sourceColumn: roi_lo90
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column roi_hi90
+		dataType: double
+		lineageTag: e24da9f6-224f-4b00-99a1-7dcc7807f163
+		summarizeBy: sum
+		sourceColumn: roi_hi90
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column effectiveness_mean
+		dataType: double
+		lineageTag: d8bb54ff-2772-4d9b-8a57-70497a8689f6
+		summarizeBy: sum
+		sourceColumn: effectiveness_mean
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column effectiveness_lo90
+		dataType: double
+		lineageTag: 5111496e-481b-4dd0-9d23-875d1b2db9f2
+		summarizeBy: sum
+		sourceColumn: effectiveness_lo90
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column effectiveness_hi90
+		dataType: double
+		lineageTag: 077b3422-d817-4d2a-91a4-4bcfd9260f1c
+		summarizeBy: sum
+		sourceColumn: effectiveness_hi90
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column mroi_mean
+		dataType: double
+		lineageTag: 128923de-9b05-4601-bcee-a3296eecfe26
+		summarizeBy: sum
+		sourceColumn: mroi_mean
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column mroi_lo90
+		dataType: double
+		lineageTag: 70bca54c-daba-43eb-a621-6ab0c7f34aba
+		summarizeBy: sum
+		sourceColumn: mroi_lo90
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column mroi_hi90
+		dataType: double
+		lineageTag: 36dfe939-04b3-43db-82cc-7b942a6afae7
+		summarizeBy: sum
+		sourceColumn: mroi_hi90
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cpik_mean
+		dataType: double
+		lineageTag: eed3c1f4-0cd2-4b93-8348-0b3de58b4e15
+		summarizeBy: sum
+		sourceColumn: cpik_mean
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cpik_lo90
+		dataType: double
+		lineageTag: ae92c897-e486-41d4-a46f-77773fb6a0e4
+		summarizeBy: sum
+		sourceColumn: cpik_lo90
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cpik_hi90
+		dataType: double
+		lineageTag: b1bc0434-f3ce-440e-b044-560a0fd2e995
+		summarizeBy: sum
+		sourceColumn: cpik_hi90
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition channel_summary = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\SpendLens\data\exports\channel_summary.csv"),[Delimiter=",", Columns=26, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"model", type text}, {"channel", type text}, {"currency", type text}, {"spend_mean", Int64.Type}, {"pct_of_spend_mean", type number}, {"impressions_mean", type number}, {"pct_of_impressions_mean", type number}, {"cpm_mean", type number}, {"incremental_outcome_mean", Int64.Type}, {"incremental_outcome_lo90", Int64.Type}, {"incremental_outcome_hi90", Int64.Type}, {"pct_of_contribution_mean", type number}, {"pct_of_contribution_lo90", type number}, {"pct_of_contribution_hi90", type number}, {"roi_mean", type number}, {"roi_lo90", type number}, {"roi_hi90", type number}, {"effectiveness_mean", type number}, {"effectiveness_lo90", type number}, {"effectiveness_hi90", type number}, {"mroi_mean", type number}, {"mroi_lo90", type number}, {"mroi_hi90", type number}, {"cpik_mean", type number}, {"cpik_lo90", type number}, {"cpik_hi90", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

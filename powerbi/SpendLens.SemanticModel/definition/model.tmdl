@@ -1,0 +1,23 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-IN
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+annotation PBI_QueryOrder = ["channel_summary","budget_allocation","response_curves","calibration_comparison"]
+
+ref table channel_summary
+ref table budget_allocation
+ref table response_curves
+ref table calibration_comparison
+ref table dim_channel
+
+ref cultureInfo en-US
+

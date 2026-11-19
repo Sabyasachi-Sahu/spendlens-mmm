@@ -1,0 +1,180 @@
+table budget_allocation
+	lineageTag: f990ea5b-9670-4ef1-8e69-b507fa6e624e
+
+	measure 'Baseline Budget' =
+			
+			CALCULATE ( SUM ( budget_allocation[baseline_spend] ), budget_allocation[channel] <> "All Channels" )
+		formatString: 0
+		lineageTag: e7097c05-9284-44bd-8d39-ec06bc6909df
+
+	measure 'Optimized Budget' =
+			
+			CALCULATE ( SUM ( budget_allocation[optimized_spend] ), budget_allocation[channel] <> "All Channels" )
+		formatString: 0
+		lineageTag: 1a9bd53a-9eb8-4d45-a575-ce1160d62151
+
+	measure 'Budget Shift' =
+			
+			IF (
+			    ISBLANK ( [Baseline Budget] ) && ISBLANK ( [Optimized Budget] ),
+			    BLANK (),
+			    [Optimized Budget] - [Baseline Budget]
+			)
+		formatString: 0
+		lineageTag: 0115855b-eb8f-4be5-a1b0-36e9606bf22c
+
+	measure 'Budget Change %' =
+			
+			IF (
+			    ISBLANK ( [Baseline Budget] ),
+			    BLANK (),
+			    DIVIDE ( [Optimized Budget], [Baseline Budget] ) - 1
+			)
+		lineageTag: 06f4cf80-b5d7-48f0-9dc0-4e6ad9e4c357
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Baseline Outcome' =
+			
+			CALCULATE ( SUM ( budget_allocation[baseline_incremental_outcome] ), budget_allocation[channel] <> "All Channels" )
+		formatString: 0
+		lineageTag: 32129487-15a3-44a0-bcd3-8bec795eb2fb
+
+	measure 'Optimized Outcome' =
+			
+			CALCULATE ( SUM ( budget_allocation[optimized_incremental_outcome] ), budget_allocation[channel] <> "All Channels" )
+		formatString: 0
+		lineageTag: 367a3ceb-b061-4b57-a979-5370150d0787
+
+	measure 'Outcome Lift %' =
+			
+			IF (
+			    ISBLANK ( [Baseline Outcome] ),
+			    BLANK (),
+			    DIVIDE ( [Optimized Outcome], [Baseline Outcome] ) - 1
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: d271bbad-222b-4ba4-98bb-c8368ca44f7f
+
+	column model
+		dataType: string
+		lineageTag: bc93e7b8-7d5e-4ef4-9715-a56fcee312ef
+		summarizeBy: none
+		sourceColumn: model
+
+		annotation SummarizationSetBy = Automatic
+
+	column channel
+		dataType: string
+		lineageTag: 1e851493-72f1-4e37-bab3-d4917187918e
+		summarizeBy: none
+		sourceColumn: channel
+
+		annotation SummarizationSetBy = Automatic
+
+	column currency
+		dataType: string
+		lineageTag: 6fda1259-08aa-48e7-a375-d6af936e0d58
+		summarizeBy: none
+		sourceColumn: currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column baseline_spend
+		dataType: int64
+		formatString: 0
+		lineageTag: 5baac655-1bc0-4852-953d-23cb4e0ce88f
+		summarizeBy: sum
+		sourceColumn: baseline_spend
+
+		annotation SummarizationSetBy = Automatic
+
+	column optimized_spend
+		dataType: int64
+		formatString: 0
+		lineageTag: da30bd34-dc90-4130-878a-d81ebde6c2d3
+		summarizeBy: sum
+		sourceColumn: optimized_spend
+
+		annotation SummarizationSetBy = Automatic
+
+	column baseline_incremental_outcome
+		dataType: int64
+		formatString: 0
+		lineageTag: 4cab5fd8-aefe-4432-ad08-26b619006039
+		summarizeBy: sum
+		sourceColumn: baseline_incremental_outcome
+
+		annotation SummarizationSetBy = Automatic
+
+	column optimized_incremental_outcome
+		dataType: int64
+		formatString: 0
+		lineageTag: 84dd02c4-be79-4d9b-b6a7-b29c78611b6c
+		summarizeBy: sum
+		sourceColumn: optimized_incremental_outcome
+
+		annotation SummarizationSetBy = Automatic
+
+	column baseline_roi
+		dataType: double
+		lineageTag: 5ec8e346-f799-4628-a53f-e037b0c54100
+		summarizeBy: sum
+		sourceColumn: baseline_roi
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column optimized_roi
+		dataType: double
+		lineageTag: 61c9a167-3b82-4edb-9f12-fd0ac8b206f2
+		summarizeBy: sum
+		sourceColumn: optimized_roi
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column baseline_mroi
+		dataType: double
+		lineageTag: cc2f2182-0f02-406b-bf20-103dab2ea11d
+		summarizeBy: sum
+		sourceColumn: baseline_mroi
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column optimized_mroi
+		dataType: double
+		lineageTag: 52f434e6-7414-42ba-a0f8-c3fc502b189e
+		summarizeBy: sum
+		sourceColumn: optimized_mroi
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column change_pct
+		dataType: double
+		lineageTag: b1dbcc66-6a69-4a8a-b8aa-1dc7f7dd47e3
+		summarizeBy: sum
+		sourceColumn: change_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition budget_allocation = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\SpendLens\data\exports\budget_allocation.csv"),[Delimiter=",", Columns=12, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"model", type text}, {"channel", type text}, {"currency", type text}, {"baseline_spend", Int64.Type}, {"optimized_spend", Int64.Type}, {"baseline_incremental_outcome", Int64.Type}, {"optimized_incremental_outcome", Int64.Type}, {"baseline_roi", type number}, {"optimized_roi", type number}, {"baseline_mroi", type number}, {"optimized_mroi", type number}, {"change_pct", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

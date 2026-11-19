@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "SpendLens"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "eb7f2cc5-77b2-426d-bd82-4a532a02aba7"
+  }
+}

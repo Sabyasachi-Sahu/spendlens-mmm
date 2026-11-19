@@ -1,0 +1,82 @@
+table response_curves
+	lineageTag: 86ac79b3-2a23-40ac-96cd-b22a4692d454
+
+	measure 'Curve Outcome' =
+			
+			CALCULATE ( AVERAGE ( response_curves[incremental_outcome] ), response_curves[metric] = "mean" )
+		lineageTag: e0925807-3dcd-4b83-8f5b-49823f12f507
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Curve Outcome Lower' =
+			
+			CALCULATE ( AVERAGE ( response_curves[incremental_outcome] ), response_curves[metric] = "ci_lo" )
+		lineageTag: 2a6210b8-23c4-4cc2-a60b-cc651be3b261
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Curve Outcome Upper' =
+			
+			CALCULATE ( AVERAGE ( response_curves[incremental_outcome] ), response_curves[metric] = "ci_hi" )
+		lineageTag: 497d983d-9a12-42c5-b9e7-ad7112895462
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column spend_multiplier
+		dataType: double
+		lineageTag: 622d57ad-bd5b-47a0-a28c-5a3ecb3d084f
+		summarizeBy: sum
+		sourceColumn: spend_multiplier
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column channel
+		dataType: string
+		lineageTag: 9aeaa5b7-bab8-4240-b821-993bba9a1979
+		summarizeBy: none
+		sourceColumn: channel
+
+		annotation SummarizationSetBy = Automatic
+
+	column metric
+		dataType: string
+		lineageTag: d4e8ee7f-8790-48ed-aa29-90156fb0fffc
+		summarizeBy: none
+		sourceColumn: metric
+
+		annotation SummarizationSetBy = Automatic
+
+	column spend
+		dataType: double
+		lineageTag: 0834e2f6-84d3-4019-b95b-76069997f52e
+		summarizeBy: sum
+		sourceColumn: spend
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column incremental_outcome
+		dataType: double
+		lineageTag: d695bd93-722a-4fcc-9c19-2a3e6c585f09
+		summarizeBy: sum
+		sourceColumn: incremental_outcome
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition response_curves = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\SpendLens\data\exports\response_curves.csv"),[Delimiter=",", Columns=5, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"spend_multiplier", type number}, {"channel", type text}, {"metric", type text}, {"spend", type number}, {"incremental_outcome", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
