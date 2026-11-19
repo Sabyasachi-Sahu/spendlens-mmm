@@ -38,3 +38,6 @@ validation:
   max_missing_pct: 0.0
   max_pairwise_channel_corr: 0.95
   min_nonzero_weeks_per_channel: 26
+model:
+  knots: 6
+  eta_m_scale: 0.3

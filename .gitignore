@@ -1,0 +1,23 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.env
+.streamlit/secrets.toml
+models/*
+!models/.gitkeep
+data/raw/*
+data/gold/*
+data/exports/*
+!data/**/.gitkeep
+*.duckdb
+*.pbix
+*.twb
+*.twbx
+.DS_Store
+
+# added 2026-11-18
+.venv-model/
+*.bak
+reports/run_logs/
+reports/tuning/*/

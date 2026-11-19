@@ -1,0 +1,11 @@
+{
+  "max_rhat": 1.0105,
+  "min_ess_bulk": 440.1531,
+  "divergences": 1,
+  "holdout_mape": 0.03402299034627782,
+  "divergence_rate": 0.00025,
+  "max_divergence_rate": 0.001,
+  "pass_convergence": true,
+  "pass_holdout": true,
+  "approved_for_insight": true
+}

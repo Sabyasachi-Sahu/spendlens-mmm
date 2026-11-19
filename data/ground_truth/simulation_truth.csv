@@ -1,0 +1,9 @@
+channel,adstock_decay,half_saturation_spend,hill_slope,max_weekly_nrx
+rep_visits,0.65,24000,1.3,22
+speaker_programs,0.45,18000,1.6,15
+hcp_email,0.3,9000,1.1,10
+programmatic_display,0.4,22000,1.2,12
+paid_search,0.2,14000,1.4,18
+paid_social,0.25,16000,1.2,9
+medical_journals,0.7,12000,1.5,8
+patient_digital,0.35,20000,1.3,11

@@ -1,0 +1,10 @@
+{
+  "rows": 1248,
+  "geos": 12,
+  "weeks": 104,
+  "duplicate_geo_week": 0,
+  "missing_cells": 0,
+  "total_spend": 168326382.66,
+  "kpi_total": 218769.0,
+  "max_spend_corr": 0.6151158072676829
+}

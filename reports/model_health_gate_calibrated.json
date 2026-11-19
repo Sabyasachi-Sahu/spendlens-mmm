@@ -1,0 +1,14 @@
+{
+  "model": "calibrated",
+  "model_path": "models\\spendlens_calibrated.binpb",
+  "model_sha256": "b29181dbf7bc0c7c6b8fcc0ef60af9d5a15d3e51e8093070ccca1ae6402ab979",
+  "max_rhat": 1.0146,
+  "min_ess_bulk": 400.9683,
+  "divergences": 3,
+  "divergence_rate": 0.00075,
+  "max_divergence_rate": 0.001,
+  "holdout_mape": 0.03363428769103931,
+  "pass_convergence": true,
+  "pass_holdout": true,
+  "approved_for_insight": true
+}
