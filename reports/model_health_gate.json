@@ -1,10 +1,13 @@
 {
+  "model": "base",
+  "model_path": "models\\spendlens.binpb",
+  "model_sha256": "7e969d91e74e4e98b3fc62393adee2d8b0e54e8a7e367b114daf1afb1d2c12b7",
   "max_rhat": 1.0105,
   "min_ess_bulk": 440.1531,
   "divergences": 1,
-  "holdout_mape": 0.03402299034627782,
   "divergence_rate": 0.00025,
   "max_divergence_rate": 0.001,
+  "holdout_mape": 0.03402299034627782,
   "pass_convergence": true,
   "pass_holdout": true,
   "approved_for_insight": true

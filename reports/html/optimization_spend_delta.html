@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    #vis.vega-embed {
+      width: 100%;
+      display: flex;
+    }
+
+    #vis.vega-embed details,
+    #vis.vega-embed details summary {
+      position: relative;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@5.20.1"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"continuousWidth": 300, "continuousHeight": 300, "stroke": null}, "axis": {"labelColor": "#5F6368", "labelFont": "Roboto", "labelFontSize": 12, "titleColor": "#5F6368", "titleFont": "Roboto", "titleFontSize": 12, "titleFontWeight": "normal"}}, "layer": [{"mark": {"type": "bar", "cornerRadiusEnd": 2, "size": 42, "tooltip": true}, "encoding": {"color": {"condition": {"test": "(datum.spend > 0)", "value": "#4ECDE6"}, "value": "#F28B82"}, "x": {"axis": {"domainColor": "#DADCE0", "labelAngle": -45, "labelPadding": 10, "ticks": false, "title": null}, "field": "channel", "scale": {"padding": 42}, "sort": null, "type": "nominal"}, "y": {"axis": {"domain": false, "domainColor": "#DADCE0", "labelExpr": "replace(format(datum.value, '.3~s'), 'G', 'B')", "labelPadding": 10, "ticks": false, "title": "$", "titleAlign": "left", "titleAngle": 0, "titleY": -20}, "field": "spend", "type": "quantitative"}}, "transform": [{"calculate": "replace(format(datum.spend, '.2~s'), 'G', 'B')", "as": "text_value"}, {"calculate": "datum.spend < 0 ? 0 : datum.spend", "as": "text_pos"}]}, {"mark": {"type": "text", "baseline": "top", "color": "#3C4043", "dy": -20, "fontSize": 12}, "encoding": {"text": {"field": "text_value", "type": "nominal"}, "x": {"axis": {"domainColor": "#DADCE0", "labelAngle": -45, "labelPadding": 10, "ticks": false, "title": null}, "field": "channel", "scale": {"padding": 42}, "sort": null, "type": "nominal"}, "y": {"field": "text_pos", "type": "quantitative"}}, "transform": [{"calculate": "replace(format(datum.spend, '.2~s'), 'G', 'B')", "as": "text_value"}, {"calculate": "datum.spend < 0 ? 0 : datum.spend", "as": "text_pos"}]}], "data": {"name": "data-120da6b997406a1496883946692977e1"}, "height": 400, "title": {"text": "Change in optimized spend for each channel", "anchor": "start", "color": "#3C4043", "font": "Google Sans Display", "fontSize": 18, "fontWeight": "normal", "offset": 10}, "width": 620, "$schema": "https://vega.github.io/schema/vega-lite/v5.20.1.json", "datasets": {"data-120da6b997406a1496883946692977e1": [{"channel": "rep_visits", "spend": -6700000.0}, {"channel": "speaker_programs", "spend": -4300000.0}, {"channel": "medical_journals", "spend": -2800000.0}, {"channel": "paid_search", "spend": 3800000.0}, {"channel": "paid_social", "spend": 3600000.0}, {"channel": "hcp_email", "spend": 2300000.0}, {"channel": "patient_digital", "spend": 2300000.0}, {"channel": "programmatic_display", "spend": 1800000.0}]}};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>

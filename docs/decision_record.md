@@ -39,3 +39,12 @@
 - Calibrated model health gate: R-hat 1.0146, min ESS 401, 3 divergences (0.075%), holdout MAPE 3.36%. Approved, but ESS and divergence rate are close to their limits. Reported as a marginal pass.
 - Result: rep_visits ROI 0.97 -> 2.91 (experiment 3.16), hcp_email 1.85 -> 3.64 (experiment 4.08). Credit moved away from patient_digital and programmatic_display. Total ROI 2.56 -> 2.89.
 - Decision: use the calibrated model for insight and budget optimisation, because it is anchored to causal experiment evidence. Keep the uncalibrated model as a comparison.
+## Budget optimisation (2026-11-19)
+
+- Scripts export_insights.py and optimize_budget.py now use the calibrated model by default (--model base gives the uncalibrated comparison, with an _uncalibrated file suffix). Each checks that the model passed its health gate and that the model hash matches the gate file before running.
+- export_insights.py: channel_summary.csv now holds numeric mean / 90% interval columns from Analyzer.summary_metrics, with a currency column (INR), instead of Meridian's formatted text table.
+- Optimiser: fixed total budget (168.3M INR), each paid channel limited to -20% / +20% of baseline, posterior means.
+- Result: spend moves toward paid_search (+20%), hcp_email (+20%) and paid_social (+20%), and away from rep_visits (-20%), speaker_programs (-20%) and medical_journals (-20%). programmatic_display (+6.8%) and patient_digital (+9.5%) end at mROI 1.16 each.
+- Expected incremental outcome: +1.9% (485.7M -> 494.8M), a point estimate with no uncertainty range. rep_visits still has mROI 0.85 after the cut, so a wider limit would help, but the limit is a business decision.
+- Limit check: the optimiser reports spend rounded to the nearest 100,000, which makes some channels appear at -20.1% / +20.4% against the exact baseline. The check compares against the optimiser's own rounded baseline and allows 50,000 of rounding. Total budget is unchanged (168,300,000).
+- Known limit: Meridian's HTML charts are built by Meridian and may show a $ symbol. The CSV exports use numbers with an INR currency column.
