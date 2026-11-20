@@ -1,0 +1,164 @@
+table calibration_inputs
+	lineageTag: f2cc6229-f97b-481c-8893-765cc913ac20
+
+	measure 'Experiment ROI' = MAX ( calibration_inputs[roi_point] )
+		formatString: 0.00
+		lineageTag: b4356bdc-909c-41d3-bec8-0a544c46656d
+
+	measure 'Experiment ROI Lower' = MAX ( calibration_inputs[roi_lower] )
+		formatString: 0.00
+		lineageTag: a187559d-f1b9-4165-8665-5ee2773df824
+
+	measure 'Experiment ROI Upper' = MAX ( calibration_inputs[roi_upper] )
+		formatString: 0.00
+		lineageTag: ebb0c62c-efe4-40e2-b0b3-284b05c89143
+
+	column experiment_id
+		dataType: string
+		lineageTag: 2cf8f2fd-7d16-48fe-9f41-2820fda3f0fe
+		summarizeBy: none
+		sourceColumn: experiment_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column channel
+		dataType: string
+		lineageTag: 7fd3f528-9e01-41c2-b86a-a8f9e096f986
+		summarizeBy: none
+		sourceColumn: channel
+
+		annotation SummarizationSetBy = Automatic
+
+	column start
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 2bc132b5-e604-4a34-88d0-b48252bf9f4f
+		summarizeBy: none
+		sourceColumn: start
+
+		variation Variation
+			isDefault
+			relationship: 7bdf880a-8a00-4df8-acbc-a5df08a76939
+			defaultHierarchy: LocalDateTable_3323d485-295d-4c9c-a0aa-cfd6ca11be10.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column end
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: d6b38677-8e34-4572-852f-66767693b27a
+		summarizeBy: none
+		sourceColumn: end
+
+		variation Variation
+			isDefault
+			relationship: 3b40d350-1e57-4a03-bea2-bbe3ccef9d78
+			defaultHierarchy: LocalDateTable_0bd78cb6-639a-4a2b-91df-6a9abfda1b35.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column incremental_kpi
+		dataType: int64
+		formatString: 0
+		lineageTag: 6aed1d2a-bb32-4144-8afd-c5436633b92b
+		summarizeBy: sum
+		sourceColumn: incremental_kpi
+
+		annotation SummarizationSetBy = Automatic
+
+	column spend
+		dataType: int64
+		formatString: 0
+		lineageTag: b6087760-98f1-4f5c-a710-8e64c62a6cc1
+		summarizeBy: sum
+		sourceColumn: spend
+
+		annotation SummarizationSetBy = Automatic
+
+	column std_error
+		dataType: int64
+		formatString: 0
+		lineageTag: a19b06ab-fe02-4e51-b400-613f7ded86c4
+		summarizeBy: sum
+		sourceColumn: std_error
+
+		annotation SummarizationSetBy = Automatic
+
+	column design
+		dataType: string
+		lineageTag: d500734e-26e2-4991-817e-db67d1e0794e
+		summarizeBy: none
+		sourceColumn: design
+
+		annotation SummarizationSetBy = Automatic
+
+	column roi_point
+		dataType: double
+		lineageTag: 976b289d-5221-49e5-bb5e-937264370e30
+		summarizeBy: sum
+		sourceColumn: roi_point
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column lift_lower
+		dataType: double
+		lineageTag: 4e0d5905-1297-4aae-bd8a-e0c20f265674
+		summarizeBy: sum
+		sourceColumn: lift_lower
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column lift_upper
+		dataType: double
+		lineageTag: 484a61c1-937b-485c-9ac0-d34ac718120d
+		summarizeBy: sum
+		sourceColumn: lift_upper
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column roi_lower =
+			
+			DIVIDE (
+			    calibration_inputs[lift_lower] * calibration_inputs[roi_point],
+			    calibration_inputs[incremental_kpi]
+			)
+		formatString: 0.00
+		lineageTag: 2438e34f-4c3a-480f-95d9-14b1bf8c6dd0
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column roi_upper =
+			
+			DIVIDE (
+			    calibration_inputs[lift_upper] * calibration_inputs[roi_point],
+			    calibration_inputs[incremental_kpi]
+			)
+		formatString: 0.00
+		lineageTag: 40ead6e2-51c9-4ba7-a7eb-f638aec86ffa
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition calibration_inputs = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\SpendLens\data\exports\calibration_inputs.csv"),[Delimiter=",", Columns=11, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"experiment_id", type text}, {"channel", type text}, {"start", type date}, {"end", type date}, {"incremental_kpi", Int64.Type}, {"spend", Int64.Type}, {"std_error", Int64.Type}, {"design", type text}, {"roi_point", type number}, {"lift_lower", type number}, {"lift_upper", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

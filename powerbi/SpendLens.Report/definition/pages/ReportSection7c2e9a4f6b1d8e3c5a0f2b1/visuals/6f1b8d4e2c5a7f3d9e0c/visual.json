@@ -1,31 +1,337 @@
 {
-  "$schema":"https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
-  "name":"6f1b8d4e2c5a7f3d9e0c",
-  "position":{"x":24,"y":648,"z":6000,"height":344,"width":1872,"tabOrder":6000},
-  "visual":{
-    "visualType":"tableEx",
-    "query":{"queryState":{"Values":{"projections":[
-      {"field":{"Column":{"Expression":{"SourceRef":{"Entity":"dim_channel"}},"Property":"channel"}},"queryRef":"dim_channel.channel","nativeQueryRef":"channel"},
-      {"field":{"Measure":{"Expression":{"SourceRef":{"Entity":"budget_allocation"}},"Property":"Baseline Budget"}},"queryRef":"budget_allocation.Baseline Budget","nativeQueryRef":"Baseline Budget","format":"#,0"},
-      {"field":{"Measure":{"Expression":{"SourceRef":{"Entity":"budget_allocation"}},"Property":"Optimized Budget"}},"queryRef":"budget_allocation.Optimized Budget","nativeQueryRef":"Optimized Budget","format":"#,0"},
-      {"field":{"Measure":{"Expression":{"SourceRef":{"Entity":"budget_allocation"}},"Property":"Budget Change %"}},"queryRef":"budget_allocation.Budget Change %","nativeQueryRef":"Budget Change %","format":"0.0%"},
-      {"field":{"Measure":{"Expression":{"SourceRef":{"Entity":"channel_summary"}},"Property":"mROI"}},"queryRef":"channel_summary.mROI","nativeQueryRef":"mROI","format":"0.00"}
-    ]}}},
-    "objects":{
-      "columnHeaders":[{"properties":{"columnAdjustment":{"expr":{"Literal":{"Value":"'growToFit'"}}},"autoSizeColumnWidth":{"expr":{"Literal":{"Value":"true"}}},"fontSize":{"expr":{"Literal":{"Value":"11D"}}}}}],
-      "columnFormatting":[
-        {"properties":{"labelDisplayUnits":{"expr":{"Literal":{"Value":"0D"}}},"labelPrecision":{"expr":{"Literal":{"Value":"0L"}}}},"selector":{"metadata":"budget_allocation.Baseline Budget"}},
-        {"properties":{"labelDisplayUnits":{"expr":{"Literal":{"Value":"0D"}}},"labelPrecision":{"expr":{"Literal":{"Value":"0L"}}}},"selector":{"metadata":"budget_allocation.Optimized Budget"}},
-        {"properties":{"labelPrecision":{"expr":{"Literal":{"Value":"1L"}}}},"selector":{"metadata":"budget_allocation.Budget Change %"}},
-        {"properties":{"labelPrecision":{"expr":{"Literal":{"Value":"2L"}}}},"selector":{"metadata":"channel_summary.mROI"}}
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "6f1b8d4e2c5a7f3d9e0c",
+  "position": {
+    "x": 24,
+    "y": 648,
+    "z": 6000,
+    "height": 344,
+    "width": 1872,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_channel"
+                    }
+                  },
+                  "Property": "channel"
+                }
+              },
+              "queryRef": "dim_channel.channel",
+              "nativeQueryRef": "channel"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "budget_allocation"
+                    }
+                  },
+                  "Property": "Baseline Budget"
+                }
+              },
+              "queryRef": "budget_allocation.Baseline Budget",
+              "nativeQueryRef": "Baseline Budget",
+              "format": "#,0"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "budget_allocation"
+                    }
+                  },
+                  "Property": "Optimized Budget"
+                }
+              },
+              "queryRef": "budget_allocation.Optimized Budget",
+              "nativeQueryRef": "Optimized Budget",
+              "format": "#,0"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "budget_allocation"
+                    }
+                  },
+                  "Property": "Budget Change %"
+                }
+              },
+              "queryRef": "budget_allocation.Budget Change %",
+              "nativeQueryRef": "Budget Change %",
+              "format": "0.0%"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "channel_summary"
+                    }
+                  },
+                  "Property": "mROI"
+                }
+              },
+              "queryRef": "channel_summary.mROI",
+              "nativeQueryRef": "mROI",
+              "format": "0.00"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {
+            "columnAdjustment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'growToFit'"
+                }
+              }
+            },
+            "autoSizeColumnWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnFormatting": [
+        {
+          "properties": {
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "0L"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "budget_allocation.Baseline Budget"
+          }
+        },
+        {
+          "properties": {
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "0L"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "budget_allocation.Optimized Budget"
+          }
+        },
+        {
+          "properties": {
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "1L"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "budget_allocation.Budget Change %"
+          }
+        },
+        {
+          "properties": {
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "2L"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "channel_summary.mROI"
+          }
+        }
       ]
     },
-    "visualContainerObjects":{
-      "title":[{"properties":{"show":{"expr":{"Literal":{"Value":"true"}}},"text":{"expr":{"Literal":{"Value":"'Budget plan'"}}},"fontSize":{"expr":{"Literal":{"Value":"14D"}}}}}],
-      "stylePreset":[{"properties":{"name":{"expr":{"Literal":{"Value":"'AlternatingRows'"}}}}}],
-      "padding":[{"properties":{"top":{"expr":{"Literal":{"Value":"8D"}}},"bottom":{"expr":{"Literal":{"Value":"8D"}}},"left":{"expr":{"Literal":{"Value":"8D"}}},"right":{"expr":{"Literal":{"Value":"8D"}}}}}]
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Budget plan'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "stylePreset": [
+        {
+          "properties": {
+            "name": {
+              "expr": {
+                "Literal": {
+                  "Value": "'AlternatingRows'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            }
+          }
+        }
+      ]
     },
-    "drillFilterOtherVisuals":true
+    "drillFilterOtherVisuals": true
   },
-  "filterConfig":{"filters":[{"name":"Filter7c3d4e5f6a7b890123456c","field":{"Column":{"Expression":{"SourceRef":{"Entity":"dim_channel"}},"Property":"channel"}},"type":"Categorical","filter":{"Version":2,"From":[{"Name":"d","Entity":"dim_channel","Type":0}],"Where":[{"Condition":{"Not":{"Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"d"}},"Property":"channel"}}],"Values":[[{"Literal":{"Value":"null"}}]]}}}}}]},"howCreated":"User"}]}
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "Filter7c3d4e5f6a7b890123456c",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_channel"
+              }
+            },
+            "Property": "channel"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "d",
+              "Entity": "dim_channel",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "d"
+                              }
+                            },
+                            "Property": "channel"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "null"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ]
+  }
 }

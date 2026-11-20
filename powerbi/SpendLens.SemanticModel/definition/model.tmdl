@@ -11,13 +11,17 @@ annotation __PBI_TimeIntelligenceEnabled = 1
 
 annotation PBI_ProTooling = ["DevMode"]
 
-annotation PBI_QueryOrder = ["channel_summary","budget_allocation","response_curves","calibration_comparison"]
+annotation PBI_QueryOrder = ["channel_summary","budget_allocation","response_curves","calibration_comparison","calibration_inputs"]
 
 ref table channel_summary
 ref table budget_allocation
 ref table response_curves
 ref table calibration_comparison
 ref table dim_channel
+ref table calibration_inputs
+ref table DateTableTemplate_f2823011-10dc-4333-a895-7b5f24f6d92f
+ref table LocalDateTable_3323d485-295d-4c9c-a0aa-cfd6ca11be10
+ref table LocalDateTable_0bd78cb6-639a-4a2b-91df-6a9abfda1b35
 
 ref cultureInfo en-US
 

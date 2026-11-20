@@ -14,3 +14,17 @@ relationship e8679b95-30eb-92cf-1244-9661dc8b06ec
 	fromColumn: response_curves.channel
 	toColumn: dim_channel.channel
 
+relationship 7bdf880a-8a00-4df8-acbc-a5df08a76939
+	joinOnDateBehavior: datePartOnly
+	fromColumn: calibration_inputs.start
+	toColumn: LocalDateTable_3323d485-295d-4c9c-a0aa-cfd6ca11be10.Date
+
+relationship 3b40d350-1e57-4a03-bea2-bbe3ccef9d78
+	joinOnDateBehavior: datePartOnly
+	fromColumn: calibration_inputs.end
+	toColumn: LocalDateTable_0bd78cb6-639a-4a2b-91df-6a9abfda1b35.Date
+
+relationship 67f23f5a-480b-b980-e4a2-e41302e2cba8
+	fromColumn: calibration_inputs.channel
+	toColumn: dim_channel.channel
+

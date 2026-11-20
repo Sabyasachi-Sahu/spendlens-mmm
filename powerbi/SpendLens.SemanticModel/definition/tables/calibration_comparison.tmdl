@@ -1,6 +1,57 @@
 table calibration_comparison
 	lineageTag: 940ae0ca-bd04-4d7e-b437-e3db2231de07
 
+	measure 'ROI Uncalibrated' =
+			
+			VAR t = FILTER ( calibration_comparison, calibration_comparison[channel] <> "All Channels" )
+			RETURN
+			    DIVIDE (
+			        SUMX ( t, calibration_comparison[roi_mean_uncal] * calibration_comparison[spend_mean_uncal] ),
+			        SUMX ( t, calibration_comparison[spend_mean_uncal] )
+			    )
+		lineageTag: 564db231-de00-4170-9bdd-61add8ddd367
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'ROI Calibrated' =
+			
+			VAR t = FILTER ( calibration_comparison, calibration_comparison[channel] <> "All Channels" )
+			RETURN
+			    DIVIDE (
+			        SUMX ( t, calibration_comparison[roi_mean_cal] * calibration_comparison[spend_mean_cal] ),
+			        SUMX ( t, calibration_comparison[spend_mean_cal] )
+			    )
+		lineageTag: bdc2ae7c-1fa0-4a06-9a89-a01bff8ddd57
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'ROI Change' = [ROI Calibrated] - [ROI Uncalibrated]
+		lineageTag: 65682957-17a3-486a-8f0e-16763f1dcd60
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'ROI Calibrated Lower 90%' =
+			
+			IF (
+			    HASONEVALUE ( dim_channel[channel] ),
+			    CALCULATE ( MAX ( calibration_comparison[roi_lo90_cal] ), calibration_comparison[channel] <> "All Channels" ),
+			    BLANK ()
+			)
+		lineageTag: a52f7193-602c-4e9d-8bda-d369fbb1f86a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'ROI Calibrated Upper 90%' =
+			
+			IF (
+			    HASONEVALUE ( dim_channel[channel] ),
+			    CALCULATE ( MAX ( calibration_comparison[roi_hi90_cal] ), calibration_comparison[channel] <> "All Channels" ),
+			    BLANK ()
+			)
+		lineageTag: ecd6b869-f112-445d-b8dd-af39d14b1032
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column currency
 		dataType: string
 		lineageTag: abde83f3-0ac9-44df-a18a-99f998b2c817
