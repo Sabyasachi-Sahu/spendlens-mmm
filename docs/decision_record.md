@@ -48,3 +48,13 @@
 - Expected incremental outcome: +1.9% (485.7M -> 494.8M), a point estimate with no uncertainty range. rep_visits still has mROI 0.85 after the cut, so a wider limit would help, but the limit is a business decision.
 - Limit check: the optimiser reports spend rounded to the nearest 100,000, which makes some channels appear at -20.1% / +20.4% against the exact baseline. The check compares against the optimiser's own rounded baseline and allows 50,000 of rounding. Total budget is unchanged (168,300,000).
 - Known limit: Meridian's HTML charts are built by Meridian and may show a $ symbol. The CSV exports use numbers with an INR currency column.
+## Power BI dashboard: known limitations (2026-11-20)
+
+- Five pages: Overview, Channel Performance, Response Curves, Budget Optimizer, Calibration. Pages 2 to 5 were built by Copilot CLI with the powerbi-authoring plugin and checked in Power BI Desktop. Each commit is tagged (powerbi-agent-p1 to p4). The model, measures and relationships were built by hand.
+- The agent's screenshot check never ran (no Power BI Desktop instance was found), so every page was checked by opening it in Power BI Desktop.
+- PDF export: the Calibration change table prints only 4 of its 8 rows. The Response Curves 90% range chart looks jagged unless a single channel is selected.
+- Cosmetic: Channel Performance slicer shows a blank (--) entry, and number formats differ between pages (plain vs lakh grouping).
+- Budget Optimizer: the mROI column is marginal ROI at current spend, not after reallocation.
+- Reading the results: the +1.9% outcome lift is a point estimate with no interval. Six of eight channels sit at the +/-20% limit. The 90% ranges for the top three channels overlap, so their order is not certain. Response curves are extrapolated beyond current spend.
+- The calibrated model passed its health gate narrowly (min ESS 401 vs 400, divergence rate 0.075% vs 0.1%).
+- All data is synthetic.
