@@ -9,7 +9,7 @@ SpendLens estimates how much each marketing channel contributes to outcomes, cal
 | Paid media spend | 168.3M INR across 8 channels |
 **How outcomes are valued:** the model explains a KPI. Each KPI unit is valued at an assumed 5,200 INR (a setting in the synthetic data, not a measured price), so ROI = incremental outcome value in INR per INR of spend.
 | Total paid-media ROI (calibrated) | 2.89 (90% range 2.27 to 3.59) |
-| Share of outcomes driven by paid media | 42.8% |
+| Share of outcomes driven by paid media | 42.7% |
 | Holdout error (last 13 weeks) | 3.4% MAPE |
 | Optimised reallocation (same total budget, each channel within +/-20%) | +1.9% incremental outcome (point estimate, no interval) |
 
