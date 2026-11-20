@@ -29,6 +29,7 @@ SpendLens estimates how much each marketing channel contributes to outcomes, cal
 ## What was built
 
 - **Data:** 104 weeks x 12 territories, 8 channels (rep visits, speaker programs, HCP email, programmatic display, paid search, paid social, medical journals, patient digital), plus controls for competitor activity, market access, a launch pulse and flu season.
+- **Ground truth:** `data/ground_truth/simulation_truth.csv` holds the channel effects built into the synthetic data. It was not used for tuning, calibration or model selection (those used convergence, holdout error and the two lift tests).
 - **Model:** Google Meridian 2.1.0 (Bayesian MMM with carryover and diminishing returns), run on CPU in Windows.
 - **Calibration:** ROI priors for rep_visits and hcp_email were built from two territory-holdout lift tests. The experiment ranges are converted to ROI units for comparison.
 - **Budget optimiser:** fixed total budget, each paid channel limited to -20% / +20%.
