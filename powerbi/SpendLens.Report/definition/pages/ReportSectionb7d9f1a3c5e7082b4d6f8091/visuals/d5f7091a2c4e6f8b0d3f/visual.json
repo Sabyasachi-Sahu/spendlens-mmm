@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "d5f7091a2c4e6f8b0d3f",
   "position": {
-    "x": 24,
-    "y": 774,
+    "x": 23.343465045592705,
+    "y": 703.22188449848022,
     "z": 6000,
-    "height": 202,
-    "width": 1872,
+    "height": 322.43161094224922,
+    "width": 1873.3130699088147,
     "tabOrder": 6000
   },
   "visual": {
@@ -342,8 +342,49 @@
               }
             }
           ]
+        }
+      },
+      {
+        "name": "58e6634429412c890787",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "calibration_comparison"
+              }
+            },
+            "Property": "ROI Uncalibrated"
+          }
         },
-        "howCreated": "User"
+        "type": "Advanced"
+      },
+      {
+        "name": "6798c13c8073dc880700",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "calibration_comparison"
+              }
+            },
+            "Property": "ROI Calibrated"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "b6a1670accb4340e4e62",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "calibration_comparison"
+              }
+            },
+            "Property": "ROI Change"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }
