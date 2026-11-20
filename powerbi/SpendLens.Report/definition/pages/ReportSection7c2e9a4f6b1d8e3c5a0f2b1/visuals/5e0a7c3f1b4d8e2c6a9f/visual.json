@@ -1,0 +1,27 @@
+{
+  "$schema":"https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name":"5e0a7c3f1b4d8e2c6a9f",
+  "position":{"x":980,"y":248,"z":5000,"height":380,"width":916,"tabOrder":5000},
+  "visual":{
+    "visualType":"barChart",
+    "query":{
+      "queryState":{
+        "Category":{"projections":[{"field":{"Column":{"Expression":{"SourceRef":{"Entity":"dim_channel"}},"Property":"channel"}},"queryRef":"dim_channel.channel","nativeQueryRef":"channel","active":true}]},
+        "Y":{"projections":[{"field":{"Measure":{"Expression":{"SourceRef":{"Entity":"budget_allocation"}},"Property":"Budget Shift"}},"queryRef":"budget_allocation.Budget Shift","nativeQueryRef":"Budget Shift","format":"#,0"}]}
+      },
+      "sortDefinition":{"sort":[{"field":{"Measure":{"Expression":{"SourceRef":{"Entity":"budget_allocation"}},"Property":"Budget Shift"}},"direction":"Descending"}],"isDefaultSort":true}
+    },
+    "objects":{
+      "categoryAxis":[{"properties":{"show":{"expr":{"Literal":{"Value":"true"}}},"fontSize":{"expr":{"Literal":{"Value":"10D"}}}}}],
+      "dataPoint":[{"properties":{"defaultColor":{"solid":{"color":{"expr":{"Literal":{"Value":"'#E6553A'"}}}}}}}]
+    },
+    "visualContainerObjects":{
+      "title":[{"properties":{"show":{"expr":{"Literal":{"Value":"true"}}},"text":{"expr":{"Literal":{"Value":"'Budget shift by channel'"}}},"fontSize":{"expr":{"Literal":{"Value":"14D"}}}}}],
+      "background":[{"properties":{"show":{"expr":{"Literal":{"Value":"true"}}},"color":{"solid":{"color":{"expr":{"Literal":{"Value":"'#FFFFFF'"}}}}},"transparency":{"expr":{"Literal":{"Value":"0D"}}}}}],
+      "border":[{"properties":{"show":{"expr":{"Literal":{"Value":"true"}}},"radius":{"expr":{"Literal":{"Value":"8D"}}}}}],
+      "padding":[{"properties":{"top":{"expr":{"Literal":{"Value":"8D"}}},"bottom":{"expr":{"Literal":{"Value":"8D"}}},"left":{"expr":{"Literal":{"Value":"8D"}}},"right":{"expr":{"Literal":{"Value":"8D"}}}}}]
+    },
+    "drillFilterOtherVisuals":true
+  },
+  "filterConfig":{"filters":[{"name":"Filter7b2c3d4e5f6a789012345b","field":{"Column":{"Expression":{"SourceRef":{"Entity":"dim_channel"}},"Property":"channel"}},"type":"Categorical","filter":{"Version":2,"From":[{"Name":"d","Entity":"dim_channel","Type":0}],"Where":[{"Condition":{"Not":{"Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"d"}},"Property":"channel"}}],"Values":[[{"Literal":{"Value":"null"}}]]}}}}}]},"howCreated":"User"}]}
+}
