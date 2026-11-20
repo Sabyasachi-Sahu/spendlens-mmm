@@ -34,6 +34,26 @@ SpendLens estimates how much each marketing channel contributes to outcomes, cal
 - **Budget optimiser:** fixed total budget, each paid channel limited to -20% / +20%.
 - **Power BI dashboard:** five pages (Overview, Channel Performance, Response Curves, Budget Optimizer, Calibration).
 
+## Power BI dashboard
+
+Five pages read the exported CSV files. Pages 2 to 5 were built by an AI agent (Copilot CLI with Microsoft's powerbi-authoring plugin) and then checked by opening them in Power BI Desktop. The data model, measures and relationships were built by hand.
+
+**Channel performance:** ROI and marginal ROI by channel, and spend against ROI.
+
+![Channel performance](docs/screenshots/02_channel_performance.png)
+
+**Response curves:** how outcome grows with spend. The right half of each curve is extrapolated beyond current spend. The range chart shows the mean with lower and upper 90% bounds for one selected channel.
+
+![Response curves](docs/screenshots/03_response_curves.png)
+
+**Budget optimizer:** the same total budget, with each channel limited to +/-20%.
+
+![Budget optimizer](docs/screenshots/04_budget_optimizer.png)
+
+**Calibration:** the model before and after using the two lift tests.
+
+![Calibration](docs/screenshots/05_calibration.png)
+
 ## Calibration check
 
 | Channel | Experiment ROI (range) | Uncalibrated model | Calibrated model (90% range) |
