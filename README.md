@@ -111,3 +111,20 @@ Python · Google Meridian · JAX · SQL · DuckDB · Power BI / DAX / PBIR · Ta
 ## Responsible use
 
 All data and scenarios in this project are synthetic. No patient, HCP, campaign, or client records are used. Results demonstrate a modeling and decision workflow; they do not represent commercial performance or medical guidance.
+
+## Method notes
+
+- **Paid-media share:** paid media drives 42.7% of outcomes (the rest is baseline).
+- **How outcomes are valued:** the model explains a KPI. Each KPI unit is valued at an assumed 5,200 INR (a setting in the synthetic data, not a measured price), so ROI is incremental outcome value in INR per INR of spend.
+- **Ground truth:** `data/ground_truth/simulation_truth.csv` holds the channel effects built into the synthetic data. It was not used for tuning, calibration or model selection (those used convergence, holdout error and the two lift tests).
+
+## Limitations
+
+- All data is synthetic. No real client or patient data is used.
+- The +1.9% outcome lift from the budget move is a point estimate with no interval. Six of eight channels sit at the +/-20% limit, so the limit may matter more than the model.
+- The 90% ranges for the top three channels (paid search, paid social, HCP email) overlap, so their order is not certain.
+- Response curves are extrapolated beyond current spend.
+- Only two channels (rep visits and HCP email) have lift tests. The other six are calibrated indirectly.
+- The calibrated model passed the health gate narrowly (minimum effective sample size 401 against a limit of 400, divergence rate 0.075% against 0.1%).
+- Power BI: the mROI column on the Budget Optimizer page is the marginal ROI at current spend, not after the reallocation.
+- The Q&A copilot is an extractive prototype. It fails on multi-part and explanatory questions (see the blind test above).
