@@ -22,3 +22,4 @@ data/exports/*
 reports/run_logs/
 reports/tuning/*/
 powerbi/**/.pbi/
+tableau/

@@ -33,12 +33,14 @@ SpendLens estimates how much each marketing channel contributes to outcomes, cal
 - **Model:** Google Meridian 2.1.0 (Bayesian MMM with carryover and diminishing returns), run on CPU in Windows.
 - **Calibration:** ROI priors for rep_visits and hcp_email were built from two territory-holdout lift tests. The experiment ranges are converted to ROI units for comparison.
 - **Budget optimiser:** fixed total budget, each paid channel limited to -20% / +20%.
-- **Power BI dashboard:** five pages (Overview, Channel Performance, Response Curves, Budget Optimizer, Calibration).
+- **Dashboards:** a five-page Power BI project (Overview, Channel Performance, Response Curves, Budget Optimizer, Calibration) and a public Tableau dashboard.
 - **Insight copilot (prototype):** a local, extractive lookup over the exported results, using Ollama with llama3.2:3b. It is not an analyst. See below for its measured limits.
 
 ## Power BI dashboard
 
 Five pages read the exported CSV files. Pages 2 to 5 were built by an AI agent (Copilot CLI with Microsoft's powerbi-authoring plugin) and then checked by opening them in Power BI Desktop. The data model, measures and relationships were built by hand.
+
+**Public Tableau dashboard:** [SpendLens on Tableau Public](https://public.tableau.com/app/profile/advance.analytics/viz/SpendLenspharmamarketingmixmodelsynthetic/SpendLensdashboard) shows ROI against marginal ROI, the budget before and after, and the calibration result. It was built by hand from three exported CSV files, with no agent. The data is synthetic and can be downloaded from that page.
 
 **Channel performance:** ROI and marginal ROI by channel, and spend against ROI.
 
@@ -140,6 +142,3 @@ Run it, with Ollama open:
     python -m spendlens.copilot_facts
     python -m spendlens.copilot "Which channel has the best marginal ROI?"
     python -m scripts.eval_copilot
-
-## Next
-- A public Tableau dashboard.
