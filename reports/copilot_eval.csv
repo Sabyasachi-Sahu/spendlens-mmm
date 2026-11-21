@@ -1,0 +1,25 @@
+question,routing,outcome,returned
+Which channel has the best ROI?,rules,PASS,F002:All Channels F009:paid_search
+Which channel has the worst marginal ROI?,rules,PASS,F001:All Channels F005:rep_visits
+Which channel is the most saturated?,rules,PASS,F001:All Channels F005:rep_visits
+Which channel gets the biggest budget increase?,rules,PASS,F003:All Channels F018:paid_search
+Which channel has the biggest budget cut?,rules,PASS,F003:All Channels F014:rep_visits
+Which channel had the biggest ROI increase from calibration?,rules,PASS,F023:All Channels F031:rep_visits
+Which channel lost the most ROI after calibration?,rules,PASS,F023:All Channels F029:patient_digital
+What is the ROI of hcp_email?,model,PASS,F001:All Channels F007:hcp_email F013:All Channels
+What happens to the patient_digital budget?,model,PASS,F021:patient_digital F004:All Channels F003:All Channels
+How did calibration change hcp_email?,model,PASS,F024:All Channels F025:hcp_email F034:hcp_email
+What did the lift test on hcp_email measure?,model,PASS,F024:All Channels F034:hcp_email
+What is the marginal ROI of rep_visits?,model,PASS,F005:rep_visits F013:All Channels
+Does speaker_programs get more or less budget?,model,PASS,F015:speaker_programs F038:All Channels F037:All Channels
+What is the total ROI of paid media?,rules,PASS,F013:All Channels
+How much of the outcome is driven by paid media?,model,PASS,F013:All Channels F022:All Channels F037:All Channels
+Does the total budget change?,model,PASS,F022:All Channels
+What is the total outcome lift from the budget move?,model,PASS,F022:All Channels
+Is this real data?,model,PASS,F035:All Channels F037:All Channels F038:All Channels
+How is a KPI unit valued?,model,PASS,F036:All Channels
+How many channels have lift tests?,model,PASS,F038:All Channels
+What is the weather in Hyderabad?,model,OK-REFUSED,-
+Which channel will have the best ROI next year?,rules,OK-REFUSED,-
+What is the ROI of TV?,model,OK-REFUSED,-
+What was the revenue in 2025?,model,OK-REFUSED,-

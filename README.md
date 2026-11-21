@@ -34,6 +34,7 @@ SpendLens estimates how much each marketing channel contributes to outcomes, cal
 - **Calibration:** ROI priors for rep_visits and hcp_email were built from two territory-holdout lift tests. The experiment ranges are converted to ROI units for comparison.
 - **Budget optimiser:** fixed total budget, each paid channel limited to -20% / +20%.
 - **Power BI dashboard:** five pages (Overview, Channel Performance, Response Curves, Budget Optimizer, Calibration).
+- **Insight copilot (prototype):** a local, extractive lookup over the exported results, using Ollama with llama3.2:3b. It is not an analyst. See below for its measured limits.
 
 ## Power BI dashboard
 
@@ -111,7 +112,34 @@ Python 3.11, Windows, PowerShell. Run from the project root with `PYTHONPATH=src
 
 The Power BI project is in `powerbi/SpendLens.pbip` and reads the CSV files in `data/exports/`. Decisions and known issues are in `docs/decision_record.md`.
 
-## Next
+## Insight copilot (prototype)
 
-- GenAI insight copilot over the model outputs, with citations.
+A local model (llama3.2:3b through Ollama, about 55 tokens per second on an RTX 3050 laptop GPU) answers questions from the exported CSV files. It is deliberately **extractive**: every figure is computed in pandas and written into a numbered fact. The model only chooses which facts to show, and the answer is those facts word for word with their source file. It cannot change a number or a meaning.
+
+Rules in code handle best/worst ROI, marginal ROI, budget increase or cut and calibration-change questions. The model handles the rest. Forecast questions and unknown channels are refused.
+
+**Why it is extractive.** An earlier version let the model write the answer, with a checker that every number appeared in a cited fact. It still produced a wrong channel and a sentence that attached the wrong range to a number, because a number check cannot test meaning. The 3B model could not reliably find a maximum across rows either, so rankings moved into code.
+
+**Regression set:** 24 questions I wrote while fixing failures (20 answerable, 4 to refuse) all pass. This is a regression check, not an accuracy score, because the code was tuned to those questions.
+
+**Blind test:** 10 questions written without reading the code.
+
+| Result | Questions |
+|---|---|
+| Right | 2 |
+| Correctly refused | 1 |
+| Partly right | 2 |
+| Wrong or wrongly answered | 5 |
+
+It handles short single-fact questions well. It fails on explanatory and multi-part questions: comparing several channels, health-gate numbers and what a dashboard column means (no facts exist for these). One forecast question ("next 26 weeks") was answered when it should have been refused. The forecast rule was fixed afterwards and that question now refuses. Results: `reports/copilot_blind_test_1.txt`, questions: `docs/copilot_blind_test_questions.txt`.
+
+**Not claimed:** an accuracy percentage, or the ability to explain results.
+
+Run it, with Ollama open:
+
+    python -m spendlens.copilot_facts
+    python -m spendlens.copilot "Which channel has the best marginal ROI?"
+    python -m scripts.eval_copilot
+
+## Next
 - A public Tableau dashboard.

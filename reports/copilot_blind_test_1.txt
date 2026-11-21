@@ -1,0 +1,56 @@
+﻿
+=== 1. 1. Why does the budget optimizer recommend cutting `rep_visits` spend even though its ROI is 2.91?
+[model]
+  F014: rep_visits: budget 33,400,000 -> 26,700,000 INR, a change of -6.7 million INR (-20.1%); rank by amount 8 of 8, by percent 8 of 8 (1 = largest increase); marginal ROI 0.61 at the optimiser's baseline -> 0.85 after the move.
+  F005: rep_visits: spend 33,417,530 INR; ROI 2.91 (90% range 1.94 to 4.11), ROI rank 4 of 8; marginal ROI at current spend 0.61, marginal ROI rank 8 of 8 (1 = highest).
+  F038: Only two channels (rep_visits and hcp_email) have lift tests. The other six are calibrated indirectly.
+
+=== 2. 2. Which channels should receive a budget increase under the optimized reallocation, and how much should each move?
+[rules]
+Largest budget increase: paid_search (+3.8 million INR).
+  F003: Budget change in million INR, largest increase first: paid_search +3.8, paid_social +3.6, hcp_email +2.3, patient_digital +2.3, programmatic_display +1.8, medical_journals -2.8, speaker_programs -4.3, rep_visits -6.7.
+  F018: paid_search: budget 19,000,000 -> 22,800,000 INR, a change of +3.8 million INR (+20.0%); rank by amount 1 of 8, by percent 2 of 8 (1 = largest increase); marginal ROI 2.07 at the optimiser's baseline -> 1.75 after the move.
+  Note: Ranked by amount in million INR. By percent the order can differ slightly, because budgets are rounded to 100,000.
+
+=== 3. 3. How did calibrating the model with the two lift tests change the ROI estimates for `rep_visits`, `hcp_email`, and total paid media?
+[model]
+  F031: rep_visits: ROI 0.97 before calibration -> 2.91 after, a change of +1.94 (90% range after: 1.94 to 4.11).
+  F034: EXP_EMAIL_01 (territory_holdout): the lift test on hcp_email measured ROI 4.08 (90% range 1.86 to 6.30, converted from the KPI range).
+  F013: All paid channels together: ROI 2.89 (90% range 2.27 to 3.59); paid media drives 42.7% of outcomes; spend 168,326,400 INR.
+
+=== 4. 4. Did the calibrated model pass the model health gate cleanly, or were there any borderline metrics?
+[model]
+  F037: The outcome lift from the budget move is a point estimate with no uncertainty range, and six of eight channels sit at their +/-20% limit.
+  F038: Only two channels (rep_visits and hcp_email) have lift tests. The other six are calibrated indirectly.
+
+=== 5. 5. Can we be confident that `paid_search` is the #1 channel by ROI?
+[model]
+  F009: paid_search: spend 19,038,204 INR; ROI 3.94 (90% range 1.94 to 6.72), ROI rank 1 of 8; marginal ROI at current spend 2.06, marginal ROI rank 1 of 8 (1 = highest).
+  F002: ROI, highest first (rank 1 = best): paid_search 3.94, paid_social 3.74, hcp_email 3.64, rep_visits 2.91, patient_digital 2.74, programmatic_display 2.68, speaker_programs 1.88, medical_journals 1.88.
+  F001: Marginal ROI at current spend, highest first (rank 1 = best): paid_search 2.06, paid_social 1.61, hcp_email 1.54, patient_digital 1.27, programmatic_display 1.24, speaker_programs 0.89, medical_journals 0.79, rep_visits 0.61.
+
+=== 6. 6. What is the expected lift from the optimized budget reallocation, and what caveats should leadership know before acting on it?
+[model]
+  F018: paid_search: budget 19,000,000 -> 22,800,000 INR, a change of +3.8 million INR (+20.0%); rank by amount 1 of 8, by percent 2 of 8 (1 = largest increase); marginal ROI 2.07 at the optimiser's baseline -> 1.75 after the move.
+  F019: paid_social: budget 17,900,000 -> 21,500,000 INR, a change of +3.6 million INR (+20.1%); rank by amount 2 of 8, by percent 1 of 8 (1 = largest increase); marginal ROI 1.61 at the optimiser's baseline -> 1.32 after the move.
+  F020: medical_journals: budget 14,000,000 -> 11,200,000 INR, a change of -2.8 million INR (-20.0%); rank by amount 6 of 8, by percent 7 of 8 (1 = largest increase); marginal ROI 0.80 at the optimiser's baseline -> 0.99 after the move.
+
+=== 7. 7. Why were 6 time knots and a prior scale of 0.3 chosen over the initial settings?
+[model]
+I can't answer that from the exported results.
+
+=== 8. 8. In the Power BI Budget Optimizer page, does the `mROI` column reflect marginal ROI before or after the recommended reallocation?
+[model]
+  F014: rep_visits: budget 33,400,000 -> 26,700,000 INR, a change of -6.7 million INR (-20.1%); rank by amount 8 of 8, by percent 8 of 8 (1 = largest increase); marginal ROI 0.61 at the optimiser's baseline -> 0.85 after the move.
+  F015: speaker_programs: budget 21,700,000 -> 17,400,000 INR, a change of -4.3 million INR (-19.8%); rank by amount 7 of 8, by percent 6 of 8 (1 = largest increase); marginal ROI 0.89 at the optimiser's baseline -> 1.09 after the move.
+  F016: hcp_email: budget 11,600,000 -> 13,900,000 INR, a change of +2.3 million INR (+19.8%); rank by amount 3 of 8, by percent 3 of 8 (1 = largest increase); marginal ROI 1.53 at the optimiser's baseline -> 1.26 after the move.
+
+=== 9. 9. Based on the calibrated model, what will our total incremental outcome and paid-media ROI be over the next 26 weeks?
+[model]
+  F013: All paid channels together: ROI 2.89 (90% range 2.27 to 3.59); paid media drives 42.7% of outcomes; spend 168,326,400 INR.
+  F023: ROI change from calibration, largest increase first: rep_visits +1.94, hcp_email +1.78, medical_journals +0.04, paid_search -0.05, speaker_programs -0.10, paid_social -0.22, programmatic_display -0.43, patient_digital -0.53.
+  F037: The outcome lift from the budget move is a point estimate with no uncertainty range, and six of eight channels sit at their +/-20% limit.
+
+=== 10. 10. How did `dtc_tv` (Direct-to-Consumer TV) perform compared to `patient_digital`, and should we shift budget into it?
+[model]
+I can't answer that from the exported results.

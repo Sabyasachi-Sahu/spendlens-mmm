@@ -1,0 +1,10 @@
+1. Why does the budget optimizer recommend cutting `rep_visits` spend even though its ROI is 2.91?
+2. Which channels should receive a budget increase under the optimized reallocation, and how much should each move?
+3. How did calibrating the model with the two lift tests change the ROI estimates for `rep_visits`, `hcp_email`, and total paid media?
+4. Did the calibrated model pass the model health gate cleanly, or were there any borderline metrics?
+5. Can we be confident that `paid_search` is the #1 channel by ROI?
+6. What is the expected lift from the optimized budget reallocation, and what caveats should leadership know before acting on it?
+7. Why were 6 time knots and a prior scale of 0.3 chosen over the initial settings?
+8. In the Power BI Budget Optimizer page, does the `mROI` column reflect marginal ROI before or after the recommended reallocation?
+9. Based on the calibrated model, what will our total incremental outcome and paid-media ROI be over the next 26 weeks?
+10. How did `dtc_tv` (Direct-to-Consumer TV) perform compared to `patient_digital`, and should we shift budget into it?
